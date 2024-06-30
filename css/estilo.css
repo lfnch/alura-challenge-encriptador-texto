@@ -1,6 +1,18 @@
 
 /*
-*
+* 
+*/
+
+/*
+* Estilo de la pagina
+*/
+
+/*
+* Estilo de los inputs
+*/
+
+/*
+* Estilo de botones
 */
 
 body {
@@ -9,22 +21,26 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
+
 header, footer {
     background-color: #333;
     color: white;
     text-align: center;
     padding: 1em;
 }
+
 nav {
     margin: 0;
     padding: 1em;
     background-color: #444;
 }
+
 nav a {
     color: white;
     margin: 0 1em;
     text-decoration: none;
 }
+
 main {
     padding: 2em;
     background-color: white;
