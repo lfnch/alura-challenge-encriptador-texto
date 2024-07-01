@@ -1,5 +1,11 @@
 /*
-* Luis felipe nieves ch
+ * Autor: Luis Felipe Nieves.
+ * Fecha: 28/06/2024
+ * Descripción: Logica para encriptador de texto challenge Alura
+*/
+
+/*
+* Variables --------------------------------------------------------------------------------------------
 */
 
 //Optenemos la instancia de los botones y elementos de html con los que vamos a trabajar
@@ -9,7 +15,15 @@ const INPUT_RESULTADO  = document.querySelector("#input_resultado");
 const BTN_ENCRIPTAR    = document.querySelector("#btn_encriptar");
 const BTN_DESENCRIPTAR = document.querySelector("#btn_desencriptar");
 const BTN_COPIAR       = document.querySelector("#btn_copiar");
+const BTN_LIMPIAR      = document.querySelector("#btn_limpiar");
+
+//Guarda en variable si el usuario cumple con los requisitos de validacion
+//no espacios en blancos, no mayusculas, no caracteres especiales
 let validacion_correcta= true;
+
+/*
+* Funciones ------------------------------------------------------------------------------------------
+*/
 
 /*
 * restablecerFormulario
@@ -18,6 +32,8 @@ let validacion_correcta= true;
 */
 function restablecerFormulario()
 {
+    validacion_correcta= true;
+
     //Limpiamos los campos de texto
     mostrarMensaje('');
     INPUT_TEXTO.value     = '';
@@ -84,7 +100,8 @@ function esCaracterEspecial(caracter)
 
 /*
 * validarCaracteresPermitidos
-* Valida cada caracter para definir si es especial o no, ya que caracteres especiales no son permitidos
+* Valida cada caracter para definir si es especial o no, 
+* ya que caracteres especiales no son permitidos
 * @void
 */
 function validarCaracteresPermitidos()
@@ -158,7 +175,6 @@ function comprobarTextoYaEncriptado(texto)
 function encriptarTexto(texto)
 {
     let texto_encriptado = '';
-
     for(i = 0; i < texto.length; i++)
     {
         switch(texto[i]) 
@@ -183,25 +199,34 @@ function encriptarTexto(texto)
             break;
         }
     }
-    
     return texto_encriptado;
 }
 
+/*
+* desencriptarTexto
+* 
+* @param : texto => cadena
+* @return cadena
+*/
 function desencriptarTexto(texto)
 {
     //Establecemos las palabras clave
     let palabras_clave = [['a', 'ai'], ['e', 'enter'], ['i', 'imes'], ['o', 'ober'], ['u', 'ufat']];
 
+    //Remplazamos las palabras clave por sus letras correspondientes
     palabras_clave.forEach(palabra_clave => 
     {
         texto = texto.replace(new RegExp(palabra_clave[1], 'g'), palabra_clave[0]);
     });
-
     return texto;
-
-    felicidades
 }
 
+/*
+* mostrarResultado
+* 
+* @param : texto => cadena
+* @void
+*/
 function mostrarResultado(texto)
 {
     INPUT_RESULTADO.value = texto;
@@ -213,9 +238,7 @@ function mostrarResultado(texto)
 
 /*
 * encriptar
-* 
-* @param : 
-* @return
+* @void
 */
 function encriptar()
 {
@@ -245,9 +268,7 @@ function encriptar()
 
 /*
 * desencriptar
-* 
-* @param : 
-* @return
+* @void
 */
 function desencriptar()
 {
@@ -277,9 +298,7 @@ function desencriptar()
 
 /*
 * copiar
-* 
-* @param : 
-* @return
+* @void
 */
 function copiar()
 {
@@ -287,7 +306,8 @@ function copiar()
     if(!textoVacio(texto))
     {
         navigator.clipboard.writeText(texto)
-        .then(() => 
+        .then(
+        () => 
         {
             console.log('Contenido copiado al portapapeles');
             /* Resuelto - texto copiado al portapapeles con éxito */
@@ -301,10 +321,8 @@ function copiar()
 }
 
 /*
-* Eventos
+* Eventos --------------------------------------------------------------------------------------------
 */
-
-restablecerFormulario();
 
 //Evento al escribir en el campo
 INPUT_TEXTO.addEventListener('keyup', () => 
@@ -329,3 +347,10 @@ BTN_COPIAR.addEventListener('click', () =>
 {
     copiar();
 });
+
+//Evento click en boton copiar
+BTN_LIMPIAR.addEventListener('click', () => 
+{
+    restablecerFormulario();
+});
+

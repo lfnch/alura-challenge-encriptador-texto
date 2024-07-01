@@ -1,54 +1,82 @@
-
 /*
-* 
+ * Autor: Luis Felipe Nieves.
+ * Fecha: 28/06/2024
+ * Descripción: Estilo para encriptador de texto challenge Alura
 */
 
 /*
 * Estilo de la pagina
 */
 
-/*
-* Estilo de los inputs
-*/
+:root
+{
+    --color-primary:#009688;
+    --color-primary-oscuro:#00796B;
+    --color-primary-suave:#B2DFDB;
+    --color-text:#FFFFFF;
+    --color-text-primary:#212121;
+    --color-text-segundario:#757575;
+    /*--color-sugundario:#BDBDBD;*/
+    --color-sugundario:#f4f4f4;
+    --color-acentado:#009688;
+}
 
-/*
-* Estilo de botones
-*/
-
-body {
+* 
+{
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
-header, footer {
-    background-color: #333;
-    color: white;
+header 
+{
+    overflow: hidden;
+    background-color: var(--color-primary);
+    display: flex; /* or inline-flex */
+    justify-content:center;
+    align-items: center;
+}
+
+header a 
+{
+    color: #f2f2f2;
     text-align: center;
-    padding: 1em;
-}
-
-nav {
-    margin: 0;
-    padding: 1em;
-    background-color: #444;
-}
-
-nav a {
-    color: white;
-    margin: 0 1em;
+    padding: 14px 16px;
     text-decoration: none;
+    font-size: 1.2rem;
 }
 
-main {
+body 
+{
+    background-color: var(--color-sugundario);
+}
+
+main 
+{
     padding: 2em;
     background-color: white;
     margin: 1em auto;
     max-width: 800px;
 }
 
+footer 
+{
+    background-color:var(--color-primary);
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+/*
+* Estilo de los inputs
+*/
+
 textarea 
 {
     text-transform: lowercase;
 }
+
+/*
+* Estilo de botones
+*/
+
