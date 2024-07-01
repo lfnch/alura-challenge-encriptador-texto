@@ -47,3 +47,8 @@ main {
     margin: 1em auto;
     max-width: 800px;
 }
+
+textarea 
+{
+    text-transform: lowercase;
+}
