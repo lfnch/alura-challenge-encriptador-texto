@@ -19,22 +19,40 @@
         <div><img src="img/favicon.png" width="40px"></div><a href="#"><strong>Encriptador de texto, challenge Alura</strong></a>
     </header>
     <main>
-        <span id="span_mensaje"></span>
-        <br/>
-        <label>Ingrese el texto</label>
-        <br/>
-        <textarea id="input_texto" rows="4"></textarea>
-        <br/>
-        <button id="btn_encriptar" disabled>Encriptar</button>  
-        <button id="btn_desencriptar" disabled>Desencriptar</button>
-        <br/>
-        <br/>
-        <label>Resultado</label>
-        <br/>
-        <textarea id="input_resultado" rows="4" readonly></textarea>
-        <br/>
-        <button id="btn_copiar" disabled>Copiar</button>  
-        <button id="btn_limpiar" >Limpiar</button>  
+        <div class="container">
+            <div class="item">
+                <span id="span_mensaje" class="mensaje">Bienvenido al encriptador de texto.</span>
+                <p>No se permite mayusculas, ni caracteres especiales</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="item">
+                <div class="container">
+                    <div class="item">
+                        <textarea id="input_texto" rows="4" placeholder="Ingrese el texto aqui..."></textarea>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="item">
+                        <button id="btn_encriptar" disabled class="button">Encriptar</button>  
+                        <button id="btn_desencriptar" disabled class="button">Desencriptar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="container">
+                    <div class="item">
+                        <textarea id="input_resultado" rows="4" readonly placeholder="Resultado"></textarea>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="item">
+                        <button id="btn_copiar" class="button" disabled>Copiar</button>  
+                        <button id="btn_limpiar" class="button" >Limpiar</button>  
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
         <p>© 2024 Luis Felipe Nieves Ch. Todos los derechos reservados.</p>
