@@ -17,10 +17,6 @@ const BTN_DESENCRIPTAR = document.querySelector("#btn_desencriptar");
 const BTN_COPIAR       = document.querySelector("#btn_copiar");
 const BTN_LIMPIAR      = document.querySelector("#btn_limpiar");
 
-//Guarda en variable si el usuario cumple con los requisitos de validacion
-//no espacios en blancos, no mayusculas, no caracteres especiales
-let validacion_correcta= true;
-
 /*
 * Funciones ------------------------------------------------------------------------------------------
 */
@@ -35,7 +31,7 @@ function restablecerFormulario()
     validacion_correcta= true;
 
     //Limpiamos los campos de texto
-    mostrarMensaje('');
+    mostrarMensaje('Bienvenido al encriptador de texto.');
     INPUT_TEXTO.value     = '';
     INPUT_RESULTADO.value = '';
 
@@ -89,56 +85,21 @@ function cambiarEstadoBotonCopiar(estado)
 }
 
 /*
-* esCaracterEspecial
-* @param : caracter => char
-* @return boolean
-*/
-function esCaracterEspecial(caracter)
-{
-    return /[^a-zA-Z0-9 ]/.test(caracter);
-}
-
-/*
 * validarCaracteresPermitidos
 * Valida cada caracter para definir si es especial o no, 
 * ya que caracteres especiales no son permitidos
-* @void
+* @return boolean
 */
 function validarCaracteresPermitidos()
 {
-    cambiarEstadoBotones(true);
-    cambiarEstadoBotonCopiar(true);
-    mostrarMensaje('');
-    INPUT_RESULTADO.value = '';
-
     //Obtenemos el texto a encriptar
     let texto = INPUT_TEXTO.value.trim().toLowerCase();
+
+    // Expresión regular para buscar caracteres especiales
+    const regex = /[^a-zA-Z0-9\s]/;
     
-    //Validamos campo no este vacio
-    if(!textoVacio(texto))
-    {
-       //Obtenemos el ultimo caracter escrito
-        const ULTIMO_CARACTER = INPUT_TEXTO.value.charAt(INPUT_TEXTO.value.length -1);
-        
-        //Comprobamos que no sea caracter especial
-        if(!esCaracterEspecial(ULTIMO_CARACTER))
-        {
-            validacion_correcta = true;
-            //Activamos los botones
-            cambiarEstadoBotones(false)
-        }
-        else
-        {
-            validacion_correcta = false;
-            mostrarMensaje('No se permiten caracteres especiales.');
-            INPUT_TEXTO.value = texto.slice(0, -1);
-        }
-    }
-    else
-    {
-        validacion_correcta = false;
-        INPUT_TEXTO.value = '';
-    }
+    // Retorna true si se encuentra un carácter especial
+    return regex.test(texto);
 }
 
 /*
@@ -242,7 +203,7 @@ function mostrarResultado(texto)
 */
 function encriptar()
 {
-    if(validacion_correcta)
+    if(!validarCaracteresPermitidos())
     {
         //Obtenemos el texto a encriptar
         let texto = INPUT_TEXTO.value.trim().toLowerCase();
@@ -262,7 +223,7 @@ function encriptar()
     }
     else
     {
-        mostrarMensaje('No se superaron las validaciones.');
+        mostrarMensaje('No se permiten caracteres especiales.');
     }
 }
 
@@ -272,7 +233,7 @@ function encriptar()
 */
 function desencriptar()
 {
-    if(validacion_correcta)
+    if(!validarCaracteresPermitidos())
     {
         //Obtenemos el texto a encriptar
         let texto = INPUT_TEXTO.value.trim().toLowerCase();
@@ -292,7 +253,7 @@ function desencriptar()
     }
     else
     {
-        mostrarMensaje('No se superaron las validaciones.');
+        mostrarMensaje('No se permiten caracteres especiales.');
     }
 }
 
@@ -327,7 +288,27 @@ function copiar()
 //Evento al escribir en el campo
 INPUT_TEXTO.addEventListener('keyup', () => 
 {
-    validarCaracteresPermitidos();
+    cambiarEstadoBotones(true);
+    cambiarEstadoBotonCopiar(true);
+    mostrarMensaje('');
+    INPUT_RESULTADO.value = '';
+    //Obtenemos el texto a encriptar
+    let texto = INPUT_TEXTO.value.trim().toLowerCase();
+    
+    //Validamos campo no este vacio
+    if(!textoVacio(texto))
+    {
+        if(!validarCaracteresPermitidos())
+        {
+            //Activamos los botones
+            cambiarEstadoBotones(false)
+        }
+        else
+        {
+            mostrarMensaje('No se permiten caracteres especiales.');
+            //INPUT_TEXTO.value = texto.slice(0, -1);
+        }
+    }
 });
 
 //Evento click en boton encriptar

@@ -81,8 +81,6 @@ footer
     border-radius: 8px;
 }
 
-
-
 @media (max-width: 600px) {
     .container {
         grid-template-columns: 1fr;
@@ -100,6 +98,7 @@ textarea
     height: 200px;
     padding:10px;
     font-size: 1.5rem;
+    resize: none;
 }
 
 .mensaje
